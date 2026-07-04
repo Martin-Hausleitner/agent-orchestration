@@ -51,8 +51,8 @@ flowchart TD
     classDef watch fill:#bf8700,stroke:#7a5600,color:#fff
     classDef work fill:#cf222e,stroke:#82071e,color:#fff
     class H human
-    class D,DT dolm
-    class M,MT mgr
+    class D,DT,DI dolm
+    class M,MT,MI mgr
     class W,WT watch
     class WC,WA,WCC,WT2 work
 ```
