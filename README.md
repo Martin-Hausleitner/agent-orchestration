@@ -76,28 +76,28 @@ only where it changes the outcome.
 
 ## Tools & methods
 
-| Tool / Method | Layer | What it does | Why | Link |
+| Tool / Method | Layer | Purpose | License | Link |
 |---|---|---|---|---|
-| **Tribunal** (3 types + persona library) | Dolmetscher | 3 independent judge personas hard-critique a plan/output across rounds behind evidence gates | Kills plausible-but-wrong work before it ships | internal tooling, method described |
-| **IDR — Interactive Deep Research** | Dolmetscher / Manager | Structured multi-source research grounded in a shared notebook of sources | Decisions backed by real evidence, not vibes | [NotebookLM](https://notebooklm.google.com) |
-| **Supergoals** | Manager | Goal-tracking that enforces dispatched work actually completes (phases + verifiers) | Stops "said done, wasn't done" | [robzilla1738/supergoal](https://github.com/robzilla1738/supergoal) |
-| **LazyCodex** | Worker | Lightweight wrapper that keeps cheap engines on-task in long loops | Cost control | internal tooling, method described |
-| **OpenSpec** | Manager | Spec-driven change workflow: proposal + tasks + acceptance, strict-validated before work | Every change is a checkable contract | internal adaptation, method described |
-| **TokScale** | Wachhund | Per-agent usage and cost tracking, surfaced on dashboards | See burn per lane in real time | [junhoyeo/tokscale](https://github.com/junhoyeo/tokscale) |
-| **Plane** | Worker | Kanban UI mirroring ticket state across columns | Human-legible board over the fleet | [makeplane/plane](https://github.com/makeplane/plane) |
-| **Operator** | Worker | Control-plane: heartbeat, ticket lifecycle, lane spawning with dedup / rate / resource guards | One place that owns who and when | internal tooling, method described |
-| **Wachhund / Nudger** | Wachhund | 5-min liveness loop; nudge with backoff 1×→5min→15min→red | Self-healing without human babysitting | internal tooling, method described |
-| **Skill-Router + Skill-Advisor** | Manager | Scans skill catalogs, recommends the right skill per task | Right capability, less guessing | internal tooling, method described |
-| **Event-hook escalation** (lane-stop hook) | Wachhund | On a lane-stop event: auto-heal → re-plan → escalate up one layer | Failures surface fast, never silently | internal tooling, method described |
-| **Report-integrity guard + anti-fake pre-commit gate** | Manager | Pre-commit gate that rejects fake-green / unverifiable "done" claims | Evidence culture enforced mechanically | internal tooling, method described |
-| **Feature-Matrix Standard** | Dolmetscher | Emoji CSV matrix: real repo links + stars, exactly one 👑 crown, explicit score provenance | Scannable, honest, sourced comparisons | internal method, described |
-| **cmux** | Worker | Multiplexed agent / terminal session control | Parallel lane control | internal tooling, method described |
-| **Engine tiers** | Meta (all layers) | Fast model → Manager; Codex/LazyCodex → Worker (supergoals); free model → research; strongest model → high-stakes work | Cheapest capable engine per role | internal method, described |
-| **Caveman briefs** | Manager → Worker | Lean, low-context pointer-briefs (link, don't inline) | Less context burn per dispatch | internal method, described |
-| **Memory system** | Worker | File-based memories + a MEMORY index, moving toward graph memory | Agents recall prior context across sessions | [getzep/graphiti](https://github.com/getzep/graphiti) (direction) |
-| **tmux lanes** | Worker | One agent per persistent tmux session | Cheap, inspectable parallelism | [tmux/tmux](https://github.com/tmux/tmux) |
-| **F1-Read-Gate** | Dolmetscher | Nothing is "done" without a read-and-proof gate | Evidence culture, no fake-green | internal method, described |
-| **2-Verifier E2E** | Manager | Two independent verifiers must pass before a goal closes | Catches single-agent blind spots | internal method, described |
+| **Tribunal** (3 types + persona library) | Dolmetscher | 3 independent judge personas hard-critique a plan/output across rounds behind evidence gates | internal (not distributed) | internal tooling, method described |
+| **IDR — Interactive Deep Research** | Dolmetscher / Manager | Structured multi-source research grounded in a shared notebook of sources | Google product (not OSS) | [NotebookLM](https://notebooklm.google.com) |
+| **Supergoals** | Manager | Goal-tracking that enforces dispatched work actually completes (phases + verifiers) | MIT | [robzilla1738/supergoal](https://github.com/robzilla1738/supergoal) |
+| **LazyCodex** | Worker | Lightweight wrapper that keeps cheap engines on-task in long loops | internal (not distributed) | internal tooling, method described |
+| **OpenSpec** | Manager | Spec-driven change workflow: proposal + tasks + acceptance, strict-validated before work | internal (not distributed) | internal adaptation, method described |
+| **TokScale** | Wachhund | Per-agent usage and cost tracking, surfaced on dashboards | MIT | [junhoyeo/tokscale](https://github.com/junhoyeo/tokscale) |
+| **Plane** | Worker | Kanban UI mirroring ticket state across columns | AGPL-3.0 | [makeplane/plane](https://github.com/makeplane/plane) |
+| **Operator** | Worker | Control-plane: heartbeat, ticket lifecycle, lane spawning with dedup / rate / resource guards | internal (not distributed) | internal tooling, method described |
+| **Wachhund / Nudger** | Wachhund | 5-min liveness loop; nudge with backoff 1×→5min→15min→red | internal (not distributed) | internal tooling, method described |
+| **Skill-Router + Skill-Advisor** | Manager | Scans skill catalogs, recommends the right skill per task | internal (not distributed) | internal tooling, method described |
+| **Event-hook escalation** (lane-stop hook) | Wachhund | On a lane-stop event: auto-heal → re-plan → escalate up one layer | internal (not distributed) | internal tooling, method described |
+| **Report-integrity guard + anti-fake pre-commit gate** | Manager | Pre-commit gate that rejects fake-green / unverifiable "done" claims | internal (not distributed) | internal tooling, method described |
+| **Feature-Matrix Standard** | Dolmetscher | Emoji CSV matrix: real repo links + stars, exactly one 👑 crown, explicit score provenance | internal (not distributed) | internal method, described |
+| **cmux** | Worker | Multiplexed agent / terminal session control | internal (not distributed) | internal tooling, method described |
+| **Engine tiers** | Meta (all layers) | Fast model → Manager; Codex/LazyCodex → Worker (supergoals); free model → research; strongest model → high-stakes work | internal (not distributed) | internal method, described |
+| **Caveman briefs** | Manager → Worker | Lean, low-context pointer-briefs (link, don't inline) | internal (not distributed) | internal method, described |
+| **Memory system** | Worker | File-based memories + a MEMORY index, moving toward graph memory | Apache-2.0 | [getzep/graphiti](https://github.com/getzep/graphiti) (direction) |
+| **tmux lanes** | Worker | One agent per persistent tmux session | ISC | [tmux/tmux](https://github.com/tmux/tmux) |
+| **F1-Read-Gate** | Dolmetscher | Nothing is "done" without a read-and-proof gate | internal (not distributed) | internal method, described |
+| **2-Verifier E2E** | Manager | Two independent verifiers must pass before a goal closes | internal (not distributed) | internal method, described |
 
 ## Examples
 
