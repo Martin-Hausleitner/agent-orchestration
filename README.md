@@ -64,6 +64,16 @@ Dolmetscher re-frames the problem and applies its quality gates; only a genuine 
 reaches the human. Each layer runs the cheapest model that can do its job — expensive reasoning
 only where it changes the outcome.
 
+## The five layers at a glance
+
+| Layer | Role | Model tier | Escalates to |
+|---|---|---|---|
+| 👤 **Human** | Intent, priorities, genuine judgement calls | — | — |
+| 🎙️ **Dolmetscher** | Refine intent into a rigorous brief; independent quality gates (Tribunal, F1-Read-Gate, IDR) | strongest / high-reasoning | Human |
+| 🧭 **Manager** | Orchestrate lanes and goals, ledger, prove work (F1), run heartbeat | fast mid-tier | Dolmetscher |
+| 🐕 **Wachhund** | 5-min liveness loop: nudge, auto-heal, respawn | cheap loop | Manager |
+| ⚙️ **Worker lanes** | Execute tickets — one agent per tmux lane | cheapest capable engine | Wachhund |
+
 ## Tools & methods
 
 | Tool / Method | Layer | What it does | Why | Link |
