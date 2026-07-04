@@ -1,7 +1,7 @@
 # agent-orchestration
 
-How one operator runs a fleet of AI coding agents — a five-layer orchestration model that turns a
-single human intent into verified, shipped work across many parallel agent lanes.
+How a single human orchestrates a fleet of AI coding agents — a five-layer model that turns one
+human intent into verified, shipped work across many parallel agent lanes.
 
 This repo is a **showcase of the method**, not the private infrastructure. Internal-only tools are
 described but not linked; every linked tool below is public.
@@ -43,7 +43,8 @@ flowchart TD
 
     WC -. "lane stalls" .-> W
     W -. "autoheal fails" .-> M
-    M -. "needs a human call" .-> H
+    M -. "beyond re-plan" .-> D
+    D -. "needs a human call" .-> H
 
     classDef human fill:#1f6feb,stroke:#0b3d91,color:#fff
     classDef dolm fill:#8957e5,stroke:#4b2c85,color:#fff
@@ -58,8 +59,9 @@ flowchart TD
 ```
 
 **Escalation path:** a worker lane that stalls is first re-nudged and auto-healed by the Wachhund
-(cheap 5-minute loop); if auto-heal fails, the Manager re-plans; only a genuine judgement call goes
-back up to the human. Each layer runs the cheapest model that can do its job — expensive reasoning
+(cheap 5-minute loop); if auto-heal fails, the Manager re-plans; if it is beyond a re-plan, the
+Dolmetscher re-frames the problem and applies its quality gates; only a genuine judgement call
+reaches the human. Each layer runs the cheapest model that can do its job — expensive reasoning
 only where it changes the outcome.
 
 ## Tools & methods
@@ -103,6 +105,20 @@ Sanitized, synthetic walk-throughs of two core methods (no private content):
 - **Self-healing before escalation.** The Wachhund fixes most stalls; humans see only real decisions.
 - **Specs are contracts.** OpenSpec changes are strict-validated before work starts.
 - **One agent, one lane.** Parallelism is inspectable tmux sessions, not a black box.
+
+## Why a separate refinement layer?
+
+The human does **not** prompt the Manager directly. A dedicated **Dolmetscher** (interpreter) layer
+sits between them, and that separation is the crux of the model:
+
+- **Prompt quality.** A one-line human intent becomes a rigorous, unambiguous brief — the Manager
+  orchestrates far better from a refined brief than from raw intent.
+- **Independent quality gates.** The layer that *checks* the work is not the layer that *plans* it.
+  Fake-green, drift, and rule-breaking are caught by an independent reviewer (F1-Read-Gate, Tribunal),
+  not self-certified by the planner.
+- **Cost separation.** The strongest (most expensive) model is spent only on refinement and review;
+  orchestration runs on a fast mid-tier model; liveness runs on a cheap loop; execution picks the
+  cheapest engine that can do the job. Expensive reasoning is spent only where it changes the outcome.
 
 ## License
 
