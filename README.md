@@ -15,11 +15,13 @@ flowchart TD
     end
     subgraph L1["🎙️ DOLMETSCHER · high-reasoning model"]
         D["Prompt refinement + quality gates<br/>turns intent into a rigorous brief"]
-        DT["🛠️ Tribunal · IDR / NotebookLM · F1-Read-Gate"]
+        DT["🛠️ Tribunal · F1-Read-Gate"]
+        DI["🧠 IDR — Interactive Deep Research<br/>NotebookLM"]
     end
     subgraph L2["🧭 MANAGER · fast orchestrator model"]
         M["Dispatch, ledger, goal-tracking"]
-        MT["🛠️ OpenSpec · Supergoals · Skill-Advisor · IDR / Research"]
+        MT["🛠️ OpenSpec · Supergoals · Skill-Advisor"]
+        MI["🧠 IDR / Research"]
     end
     subgraph L3["🐕 WACHHUND · cheap 5-min loop"]
         W["Liveness watch + autoheal<br/>restarts stalled lanes"]
